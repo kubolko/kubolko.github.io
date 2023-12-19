@@ -10,6 +10,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -69,18 +71,29 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            // BackgroundWithCircles(
-            //   backgroundColor: Color(0xff90E0EF),
-            //   overlayElement: Description(),
-            // ),
-            // BackgroundWithCircles(
-            //   backgroundColor: Color(0xff90E0EF),
-            //   overlayElement:
-            //       MyHorizontalTextScroll(items: ['aaaa', 'bbbbb', 'cccccc']),
-            // ),
+            const BackgroundWithCircles(
+              backgroundColor: Color(0xff90E0EF),
+              overlayElement: Description(),
+              overlayColor: Color(0xffCAF0F8),
+            ),
+            BackgroundWithCircles(
+              backgroundColor: const Color(0xffCAF0F8),
+              overlayElement: JiraRow(items: [
+                'aaaa',
+                'bbbbb',
+                'cccccc',
+                'dddd',
+                'eeee',
+                'fff',
+                'gggggg',
+                'hhhhhh',
+                'jjjjj'
+              ]),
+              overlayColor: const Color(0xff90E0EF),
+            ),
             // BackgroundWithCircles(
             //   backgroundColor: Color(0xffCAF0F8),
             //   overlayElement: Text('wdadada'),

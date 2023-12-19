@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class BackgroundWithCircles extends StatelessWidget {
   final Color backgroundColor;
+  final Color overlayColor;
   final Widget overlayElement;
 
   const BackgroundWithCircles({
     Key? key,
     required this.backgroundColor,
+    required this.overlayColor,
     required this.overlayElement,
   }) : super(key: key);
 
@@ -15,16 +17,21 @@ class BackgroundWithCircles extends StatelessWidget {
     return Column(
       children: [
         Container(
-            color: backgroundColor,
-            width: double.infinity,
-            child: overlayElement,
+          color: backgroundColor,
+          width: double.infinity,
+          child: overlayElement,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(
-            12,
-            (index) => HalfCircleWidget(
-              color: backgroundColor,
+        Container(
+          color: overlayColor,
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(
+              12,
+              (index) => HalfCircleWidget(
+                color: backgroundColor,
+                overlayColor: overlayColor,
+              ),
             ),
           ),
         ),
@@ -35,8 +42,11 @@ class BackgroundWithCircles extends StatelessWidget {
 
 class HalfCircleWidget extends StatelessWidget {
   final Color color;
+  final Color overlayColor;
 
-  const HalfCircleWidget({Key? key, required this.color}) : super(key: key);
+  const HalfCircleWidget(
+      {Key? key, required this.color, required this.overlayColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
