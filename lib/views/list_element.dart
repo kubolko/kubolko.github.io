@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ListElement extends StatefulWidget {
+  @override
   final Key key;
   final String text;
   final Color color;
   final VoidCallback onPressed;
   final VoidCallback onDelete;
 
-  ListElement({
+  const ListElement({
     required this.key,
     required this.text,
     required this.color,
@@ -44,12 +46,7 @@ class _ListElementState extends State<ListElement> {
           ),
           child: TextFormField(
             controller: _textEditingController,
-            style: const TextStyle(
-              fontSize: 18,
-              fontFamily: 'menlo',
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
-            ),
+            style: GoogleFonts.getFont('Roboto Mono'),
             decoration: const InputDecoration(
               border: InputBorder.none,
             ),

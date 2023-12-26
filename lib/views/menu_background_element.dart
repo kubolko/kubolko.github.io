@@ -6,11 +6,11 @@ class BackgroundWithCircles extends StatelessWidget {
   final Widget overlayElement;
 
   const BackgroundWithCircles({
-    Key? key,
+    super.key,
     required this.backgroundColor,
     required this.overlayColor,
     required this.overlayElement,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +45,7 @@ class HalfCircleWidget extends StatelessWidget {
   final Color overlayColor;
 
   const HalfCircleWidget(
-      {Key? key, required this.color, required this.overlayColor})
-      : super(key: key);
+      {super.key, required this.color, required this.overlayColor});
 
   @override
   Widget build(BuildContext context) {
