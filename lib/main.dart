@@ -5,12 +5,12 @@ import 'package:jira_creator/views/recommended_rows.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'about_me.dart';
-import 'generate_backlog.dart';
-import 'add_more.dart';
-import 'description.dart';
-import 'list_with_selectable_values.dart';
-import 'menu_background_element.dart';
+import 'views/about_me.dart';
+import 'views/generate_backlog.dart';
+import 'views/add_more.dart';
+import 'views/description.dart';
+import 'views/list_with_selectable_values.dart';
+import 'views/menu_background_element.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
