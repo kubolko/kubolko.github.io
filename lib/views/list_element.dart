@@ -2,32 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ListElement extends StatefulWidget {
-  @override
-  final Key key;
   final String text;
   final Color color;
-  final VoidCallback onPressed;
   final VoidCallback onDelete;
+  final Function(String) onTextChanged;
+  final Function(String) onSubmitted; // Added onSubmitted callback
+  final VoidCallback onPressed;
 
   const ListElement({
-    required this.key,
+    super.key,
     required this.text,
     required this.color,
     required this.onPressed,
+    required this.onSubmitted,
     required this.onDelete,
-  }) : super(key: key);
+    required this.onTextChanged,
+  });
 
   @override
   _ListElementState createState() => _ListElementState();
 }
 
 class _ListElementState extends State<ListElement> {
-  late TextEditingController _textEditingController;
+  late TextEditingController _controller;
+  late FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
-    _textEditingController = TextEditingController(text: widget.text);
+    _controller = TextEditingController(text: widget.text);
+    _focusNode = FocusNode();
+
+    _focusNode.addListener(() {
+      if (!_focusNode.hasFocus) {
+        // The text field has lost focus
+        widget.onSubmitted(_controller.text);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -38,18 +56,20 @@ class _ListElementState extends State<ListElement> {
         ElevatedButton(
           onPressed: widget.onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF0077B6),
+            backgroundColor: widget.color,
             minimumSize: const Size(125, 70),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ),
           ),
           child: TextFormField(
-            controller: _textEditingController,
+            controller: _controller,
+            focusNode: _focusNode,
             style: GoogleFonts.getFont('Roboto Mono'),
             decoration: const InputDecoration(
               border: InputBorder.none,
             ),
+            onFieldSubmitted: widget.onSubmitted, // Using onSubmitted callback
           ),
         ),
         GestureDetector(
@@ -63,7 +83,7 @@ class _ListElementState extends State<ListElement> {
             ),
             child: const Center(
               child: Text(
-                '💀', // Skull emoji
+                '💀',
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.white,
@@ -74,11 +94,5 @@ class _ListElementState extends State<ListElement> {
         ),
       ],
     );
-  }
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    super.dispose();
   }
 }

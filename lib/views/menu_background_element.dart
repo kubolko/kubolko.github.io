@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class BackgroundWithCircles extends StatelessWidget {
   final Color backgroundColor;
   final Color overlayColor;
-  final Widget overlayElement;
+  final Widget child;
 
   const BackgroundWithCircles({
     super.key,
     required this.backgroundColor,
     required this.overlayColor,
-    required this.overlayElement,
+    required this.child,
   });
 
   @override
@@ -19,7 +19,7 @@ class BackgroundWithCircles extends StatelessWidget {
         Container(
           color: backgroundColor,
           width: double.infinity,
-          child: overlayElement,
+          child: child,
         ),
         Container(
           color: overlayColor,

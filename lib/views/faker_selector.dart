@@ -1,64 +1,71 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProbabilitySelector extends StatefulWidget {
-  final String fieldsMode;
-  final Function(String) onProbabilityModeChanged;
+class FakerSelector extends StatefulWidget {
+  final String fakerMode;
+  final Function(String) onFakerModeChanged;
 
-  const ProbabilitySelector({
+  const FakerSelector({
     super.key,
-    required this.fieldsMode,
-    required this.onProbabilityModeChanged,
+    required this.fakerMode,
+    required this.onFakerModeChanged,
   });
 
   @override
-  _ProbabilitySelectorState createState() => _ProbabilitySelectorState();
+  _FakerSelectorState createState() => _FakerSelectorState();
 }
 
-class _ProbabilitySelectorState extends State<ProbabilitySelector> {
+class _FakerSelectorState extends State<FakerSelector> {
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) {
-      print("Current fieldsMode: ${widget.fieldsMode}");
-    }
     return Column(
       children: [
-        const Text("How to select the elements?"),
+        const Text("How to create the elements?"),
         SizedBox(
           height: 110,
           child: ListView(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
+            //TODO: add random dates
             children: <Widget>[
               ChoiceCard(
-                icon: '🗿',
-                label: 'even',
-                isSelected: widget.fieldsMode == 'even',
-                onTap: () => widget.onProbabilityModeChanged('even'),
-              ),
-              ChoiceCard(
-                icon: '🙏',
-                label: 'normal \n (gaussian)',
-                isSelected: widget.fieldsMode == 'normal',
+                icon: '🈳',
+                label: 'word',
+                isSelected: widget.fakerMode == 'word',
                 onTap: () {
-                  widget.onProbabilityModeChanged('normal');
+                  setState(() {
+                    widget.onFakerModeChanged('word');
+                  });
                 },
               ),
               ChoiceCard(
-                icon: '🔝',
-                label: 'rising',
-                isSelected: widget.fieldsMode == 'rising',
+                icon: '🖊️',
+                label: 'sentence',
+                isSelected: widget.fakerMode == 'sentence',
                 onTap: () {
-                  widget.onProbabilityModeChanged('rising');
+                  setState(() {
+                    widget.onFakerModeChanged('sentence');
+                  });
                 },
               ),
               ChoiceCard(
-                icon: '📉',
-                label: 'descending',
-                isSelected: widget.fieldsMode == 'descending',
+                icon: '📕',
+                label: 'follow \n user story format',
+                isSelected: widget.fakerMode == 'user_story',
                 onTap: () {
-                  widget.onProbabilityModeChanged('descending');
+                  setState(() {
+                    widget.onFakerModeChanged('user_story');
+                  });
+                },
+              ),
+              ChoiceCard(
+                icon: '💯',
+                label: 'number',
+                isSelected: widget.fakerMode == 'number',
+                onTap: () {
+                  setState(() {
+                    widget.onFakerModeChanged('number');
+                  });
                 },
               ),
             ],
