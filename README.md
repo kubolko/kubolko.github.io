@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-# kubolko.github.io
-=======
-# jira_creator
-
 A new Flutter project.
 
 ## Getting Started
